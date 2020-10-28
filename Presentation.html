@@ -31,29 +31,63 @@ class: center, middle, inverse, title-slide
 ]
 &lt;img src="images/taipan-figure-3.3.png" width="1792" height="50%" /&gt;
 ---
+.center[
+# Examing the Code
+]
+
+```r
+ggmap(caribou_map) +
+  geom_point(data = locations, 
+             aes(x = longitude, 
+                 y =latitude, 
+                 col = study_site), 
+             size = 0.3, 
+             alpha = 0.9) +
+  gghighlight(unhighlighted_params = list(colour = "#F2EFC7"), 
+              use_direct_label = FALSE) +
+  palettetown::scale_colour_poke(pokemon = "golbat") +
+  guides(colour = guide_legend(title = "Herd", 
+                               override.aes = list(size = 4))) +
+  facet_wrap(~season, 
+             strip.position = "bottom") +
+  theme_void() 
+```
+
+
+---
 class: inverse, center, middle
 .center[
 # What Makes it Work?
 ]
 
-1: BLA BLA  
-2: BLA BLA
+1: Captures the spatial and geographic elements of the data  
+2: Groups are easily identifiable  
+3: Avoids overplotting through faceting   
 
 ---
 .center[
 # Removing the Background
 ]
 
-
-
 .pull-left[
 ![](Presentation_files/figure-html/firstchange-1.png)&lt;!-- --&gt;
 ]
 
 .pull-right[
-- My List 1  
+- Replace ggmap with ggplot2
 
-- My List 2
+```r
+*ggplot() +
+geom_point(data = locations, 
+             aes(x = longitude, 
+                 y = latitude, 
+                 col = study_site), 
+           size = 0.3, 
+           alpha = 0.9)
+```
+
+
+- The geographic features visible in the original plot are lost
 ]
 ---
 .center[
@@ -65,9 +99,21 @@ class: inverse, center, middle
 ]
 
 .pull-right[
-- My List 1  
+- Remove the legend using ggplot2 themes  
 
-- My List 2
+```r
+ggplot() + 
+geom_point(data = locations, 
+             aes(x = longitude, 
+                 y = latitude, 
+                 col = study_site), 
+           size = 0.3, 
+           alpha = 0.9) +
+* theme(legend.position =  "none")
+```
+
+
+- The individual groups within the visualisation can lo longer be identified 
 ]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
