@@ -5,8 +5,10 @@
     <meta charset="utf-8" />
     <meta name="author" content="Mayunk Bharadwaj" />
     <meta name="author" content="Lachlan Moody" />
-    <meta name="date" content="2020-10-28" />
-    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <meta name="date" content="2020-10-29" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
@@ -16,7 +18,7 @@ class: center, middle, inverse, title-slide
 ## Take a fabulous plot and mess it up
 ### Mayunk Bharadwaj
 ### Lachlan Moody
-### 2020-10-28
+### 2020-10-29
 
 ---
 
@@ -114,6 +116,73 @@ geom_point(data = locations,
 
 
 - The individual groups within the visualisation can lo longer be identified 
+]
+---
+.center[
+# Removing distinct colours
+]
+
+.pull-left[
+![](Presentation_files/figure-html/thirdchange-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+- Change the colour palette
+
+```r
+ggplot() + 
+geom_point(data = locations, 
+             aes(x = longitude, 
+                 y = latitude, 
+                 col = study_site), 
+           size = 0.3, 
+           alpha = 0.9) +
+*scale_colour_grey()
+```
+
+
+- It is now much more difficult to identify a herd as clearly distinct colours have been replaced by colours that are all a shade of grey.
+]
+---
+.center[
+# Removing faceting by season
+]
+
+.pull-left[
+![](Presentation_files/figure-html/fourthchange-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+- Remove facet_wrap
+
+```r
+ggplot() + 
+geom_point(data = locations, 
+             aes(x = longitude, 
+                 y = latitude, 
+                 col = study_site), 
+           size = 0.3, 
+           alpha = 0.9) +
+*#remove the below code
+*facet_wrap(~season)
+```
+
+
+- There is now no distinction between herd movement from Summer to Winter.
+]
+---
+.center[
+# Final Comparison
+]
+
+.pull-left[
+*Original Plot*
+![](Presentation_files/figure-html/comparison1-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+*Ruined Plot*
+![](Presentation_files/figure-html/comparison2-1.png)&lt;!-- --&gt;
 ]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
