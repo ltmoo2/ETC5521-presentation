@@ -8,7 +8,7 @@ date: '`r Sys.Date()`'
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: xaringan-themer.css
+    css: [default, metropolis, metropolis-fonts]
     nature:
       highlightStyle: github
       highlightLines: true
@@ -155,7 +155,7 @@ geom_point(data = locations,
 ]
 ---
 .center[
-# Removing clear and distinct colours for each herd
+# Removing distinct colours
 ]
 
 .pull-left[
@@ -173,14 +173,92 @@ geom_point(data = locations,
 ]
 
 .pull-right[
-- Change the colour palette from `palettetown::scale_colour_poke(pokemon = "golbat")` to `scale_colour_grey()`
+- Change the colour palette
 ```{r, eval=FALSE, echo=TRUE}
-ggplot() +
+ggplot() + 
 geom_point(data = locations, 
-           aes(longitude, latitude, col = study_site), size = 0.3, alpha = 0.9) +
+             aes(x = longitude, 
+                 y = latitude, 
+                 col = study_site), 
+           size = 0.3, 
+           alpha = 0.9) +
 scale_colour_grey()  #<<
 ```
 
 
 - It is now much more difficult to identify a herd as clearly distinct colours have been replaced by colours that are all a shade of grey.
+]
+---
+.center[
+# Removing faceting by season
+]
+
+.pull-left[
+```{r fourthchange, cache=TRUE}
+ggplot() +
+geom_point(data = locations, 
+             aes(longitude, latitude, col = study_site), size = 0.3, alpha = 0.9) +
+  gghighlight(unhighlighted_params = list(colour = "#F2EFC7"), use_direct_label = FALSE) +
+  scale_colour_grey() +
+  guides(colour = guide_legend(title = "Herd", override.aes = list(size = 4))) +
+  theme(axis.title = element_blank(),
+        legend.position =  "none")
+```
+]
+
+.pull-right[
+- Remove facet_wrap
+```{r, eval=FALSE, echo=TRUE}
+ggplot() + 
+geom_point(data = locations, 
+             aes(x = longitude, 
+                 y = latitude, 
+                 col = study_site), 
+           size = 0.3, 
+           alpha = 0.9) +
+#remove the below code #<<
+facet_wrap(~season) #<<
+```
+
+
+- There is now no distinction between herd movement from Summer to Winter.
+]
+---
+.center[
+# Final Comparison
+]
+
+.pull-left[
+*Original Plot*
+```{r comparison1, cache=TRUE}
+ggmap(caribou_map) +
+  geom_point(data = locations, 
+             aes(x = longitude, 
+                 y =latitude, 
+                 col = study_site), 
+             size = 0.3, 
+             alpha = 0.9) +
+  gghighlight(unhighlighted_params = list(colour = "#F2EFC7"), 
+              use_direct_label = FALSE) +
+  palettetown::scale_colour_poke(pokemon = "golbat") +
+  guides(colour = guide_legend(title = "Herd", 
+                               override.aes = list(size = 4))) +
+  facet_wrap(~season, 
+             strip.position = "bottom") +
+  theme_void() 
+```
+]
+
+.pull-right[
+*Ruined Plot*
+```{r comparison2, cache=TRUE}
+ggplot() +
+geom_point(data = locations, 
+             aes(longitude, latitude, col = study_site), size = 0.3, alpha = 0.9) +
+  gghighlight(unhighlighted_params = list(colour = "#F2EFC7"), use_direct_label = FALSE) +
+  scale_colour_grey() +
+  guides(colour = guide_legend(title = "Herd", override.aes = list(size = 4))) +
+  theme(axis.title = element_blank(),
+        legend.position =  "none")
+```
 ]
