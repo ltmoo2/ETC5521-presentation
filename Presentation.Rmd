@@ -18,7 +18,7 @@ output:
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, fig.retina = 3)
 
 library(tidyverse)
 library(kableExtra)
@@ -48,10 +48,15 @@ caribou_map <- get_map(location = c(-125, 52.5, -119, 57.6), source = "osm")
 ```
 .center[
 # Taipan Figure 3.3
-]
+
 ```{r goodimg, out.height= "50%"}
 knitr::include_graphics("images/taipan-figure-3.3.png")
 ```
+
+
+[Credit Taipan:](https://github.com/etc5521-2020/assignment-1-taipan) Helen Evangelina and Yiwen Jiang.
+
+]
 ---
 .center[
 # Examing the Code
