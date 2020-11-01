@@ -1,0 +1,11 @@
+So now that we know about the story the figure tells and the features of the plot that make it effective - let’s ruin it.
+
+The first step in messing up the plot is to remove the background. We do this by removing the ggmap element within the code and changing it to a simple ggplot. The background which had previously shown the geographic and spatial elements of the area that the caribou inhabit is now plain. We’re no longer able to identify the presence of certain geographic structures like rivers and mountains. This is important because as we know, the movement of the caribou is heavily influenced by the elevation of the area.
+
+The second step in messing up the plot is to remove the legend. We do this by setting the legend position as ‘none’ within the theme function. The legend helped us identify  the name of different herds. So, now even though we can still distinguish between different herds, we’re not able to identify them by name which obviously blurs the narrative a bit as it removes specificity.
+
+The third step in ruining group Taipan’s plot was to remove the colour scale used for different herds and colour all the herds different shades of grey.  We do this by removing the initial colour scale used by group Taipan and adding a grey colour scale. Although the herds are still differently shaded, it’s now much harder to distinguish one herd from another. This is exacerbated by the removal of the legend and the plot background being grey. 
+
+The fourth step involves faceting by season to show the difference in how the caribou move and congregate as the weather changes. We do this by simply deleting the facet_wrap function. As we saw with the original plot, it appears as the weather gets colder the caribou congregate closer. If we remove faceting, we’re no longer able to distinguish differences in behaviour from season to season. 
+
+So in conclusion - initially, we had a really beautiful plot that told a compelling story about the movement of different caribou herds through summer and winter. We managed to ruin that plot and the narrative it told by firstly: removing the geographic elements of plot; secondly - removing the legend; then third: removing the distinct colours used to identify herds and colour them all varying shades of grey and finally, by removing the facet wrapping by season.
