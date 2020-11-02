@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="author" content="Mayunk Bharadwaj" />
     <meta name="author" content="Lachlan Moody" />
-    <meta name="date" content="2020-10-31" />
+    <meta name="date" content="2020-11-02" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
@@ -18,7 +18,7 @@ class: center, middle, inverse, title-slide
 ## Take a fabulous plot and mess it up
 ### Mayunk Bharadwaj
 ### Lachlan Moody
-### 2020-10-31
+### 2020-11-02
 
 ---
 
@@ -31,6 +31,7 @@ class: center, middle, inverse, title-slide
 .center[
 # Taipan Figure 3.3
 
+Seasonal differences of habitats (Coloured by herds and separated by herds)
 &lt;img src="images/taipan-figure-3.3.png" width="597" height="50%" /&gt;
 
 
@@ -42,6 +43,8 @@ class: center, middle, inverse, title-slide
 # Examing the Code
 ]
 
+.middle[
+
 ```r
 ggmap(caribou_map) +
   geom_point(data = locations, 
@@ -50,16 +53,16 @@ ggmap(caribou_map) +
                  col = study_site), 
              size = 0.3, 
              alpha = 0.9) +
-  gghighlight(unhighlighted_params = list(colour = "#F2EFC7"), 
-              use_direct_label = FALSE) +
-  palettetown::scale_colour_poke(pokemon = "golbat") +
+* gghighlight(unhighlighted_params = list(colour = "#F2EFC7"),
+*             use_direct_label = FALSE) +
+* palettetown::scale_colour_poke(pokemon = "golbat") +
   guides(colour = guide_legend(title = "Herd", 
                                override.aes = list(size = 4))) +
   facet_wrap(~season, 
              strip.position = "bottom") +
   theme_void() 
 ```
-
+]
 
 ---
 class: inverse, center, middle
